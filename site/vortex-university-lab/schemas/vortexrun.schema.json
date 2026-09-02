@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vortexanalytica.com/schemas/vortexrun.schema.json",
+  "title": "Vortex University Lab run export v2",
+  "description": "Bieżący kontrakt eksportu. Wyniki v1 pozostają obsługiwane wyłącznie jako starszy zapis do odczytu.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "formatVersion",
+    "exportedAt",
+    "app",
+    "scenario",
+    "run",
+    "events",
+    "summary",
+    "integrity"
+  ],
+  "properties": {
+    "format": {
+      "const": "vortexrun"
+    },
+    "formatVersion": {
+      "const": 2
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time",
+      "maxLength": 40
+    },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "const": "vortex-university-lab" },
+        "version": { "const": "0.3.1-showcase" }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "title"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]{3,64}$" },
+        "version": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 120 }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runId",
+        "teamAlias",
+        "roleLens",
+        "createdAt",
+        "updatedAt",
+        "completedAt",
+        "status",
+        "dataClass",
+        "learningMode",
+        "workForm",
+        "assessmentContractVersion"
+      ],
+      "properties": {
+        "runId": { "type": "string", "pattern": "^[a-zA-Z0-9-]{8,80}$" },
+        "teamAlias": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "roleLens": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 40 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 40 },
+        "completedAt": {
+          "oneOf": [
+            { "type": "string", "format": "date-time", "maxLength": 40 },
+            { "type": "null" }
+          ]
+        },
+        "status": { "enum": ["active", "completed", "imported-readonly"] },
+        "dataClass": { "const": "pseudonymous" },
+        "learningMode": { "enum": ["training", "assessment"] },
+        "workForm": { "enum": ["team", "individual"] },
+        "assessmentContractVersion": { "const": "analytic-core-0.3" }
+      }
+    },
+    "events": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 500,
+      "contains": {
+        "type": "object",
+        "required": ["type"],
+        "properties": { "type": { "const": "BASELINE_SUBMITTED" } }
+      },
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["eventId", "runId", "seq", "type", "occurredAt", "payload"],
+        "properties": {
+          "eventId": { "type": "string", "pattern": "^[a-zA-Z0-9-]{8,100}$" },
+          "runId": { "type": "string", "pattern": "^[a-zA-Z0-9-]{8,80}$" },
+          "seq": { "type": "integer", "minimum": 1, "maximum": 500 },
+          "type": {
+            "enum": [
+              "RUN_STARTED",
+              "BASELINE_SUBMITTED",
+              "INQUIRY_COMMITTED",
+              "MATERIAL_ACCESSED",
+              "MATERIAL_ROLE_ASSIGNED",
+              "STAGE_SUBMITTED",
+              "STAGE_REVISED",
+              "RUN_COMPLETED",
+              "DEBRIEF_ACKNOWLEDGED",
+              "RECOMMENDATION_REVISED",
+              "TRANSFER_SUBMITTED"
+            ]
+          },
+          "occurredAt": { "type": "string", "format": "date-time", "maxLength": 40 },
+          "payload": { "type": "object" }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["completedRounds", "totalRounds", "selectedEvidence", "hypothesisChanges"],
+      "properties": {
+        "completedRounds": { "type": "integer", "minimum": 0, "maximum": 30 },
+        "totalRounds": { "type": "integer", "minimum": 1, "maximum": 30 },
+        "selectedEvidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "hypothesisChanges": { "type": "integer", "minimum": 0, "maximum": 30 }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "canonicalization", "digest", "meaning"],
+      "properties": {
+        "algorithm": { "enum": ["SHA-256", "none"] },
+        "canonicalization": { "const": "vortex-stable-json-v1" },
+        "digest": { "type": "string", "maxLength": 128 },
+        "meaning": { "const": "integrity-not-authenticity" }
+      }
+    }
+  }
+}

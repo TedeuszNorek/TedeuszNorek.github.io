@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; form-action 'none'; img-src data:; style-src 'unsafe-inline'">
+  <title>Vortex University Lab | Demonstrator</title>
+  <style>
+    :root { color-scheme: light; --bg:#f3f0e8; --surface:#fcfcfa; --ink:#122027; --muted:#50646d; --line:#c9d1d1; --navy:#071015; --cyan:#44c8ce; --cyan-dark:#14777c; --coral:#e46d5a; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; background:var(--bg); color:var(--ink); font:16px/1.55 ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { width:min(1080px,calc(100% - 32px)); margin:0 auto; padding:72px 0; }
+    .mark { display:inline-flex; align-items:center; gap:12px; color:var(--ink); font-size:.82rem; font-weight:850; letter-spacing:.11em; text-transform:uppercase; }
+    .monogram { display:grid; place-items:center; width:42px; height:42px; border-radius:13px; background:var(--navy); color:var(--cyan); font-size:1.18rem; }
+    .hero { margin-top:42px; padding:clamp(28px,6vw,68px); border:1px solid var(--line); border-radius:28px; background:var(--surface); box-shadow:0 24px 70px rgb(7 16 21 / 10%); }
+    .eyebrow { margin:0 0 12px; color:var(--cyan-dark); font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { max-width:780px; margin:0; font-size:clamp(2.45rem,7vw,5.4rem); line-height:.98; letter-spacing:-.055em; }
+    .lead { max-width:720px; margin:28px 0 0; color:var(--muted); font-size:clamp(1.05rem,2vw,1.28rem); }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:32px; }
+    a { min-height:48px; display:inline-flex; align-items:center; justify-content:center; padding:12px 18px; border:1px solid var(--navy); border-radius:999px; color:var(--ink); font-weight:800; text-decoration:none; }
+    a.primary { background:var(--cyan); }
+    a:hover { background:#e1f4f3; border-color:var(--cyan-dark); }
+    a:focus-visible { outline:3px solid var(--coral); outline-offset:3px; }
+    .note { margin:28px 0 0; padding-top:22px; border-top:1px solid var(--line); color:var(--muted); font-size:.94rem; }
+    @media (max-width:560px) { main { padding:28px 0; } .hero { margin-top:26px; } .actions a { width:100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="mark"><span class="monogram" aria-hidden="true">V</span><span>Vortex University Lab</span></div>
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">Publiczny demonstrator dla kadry akademickiej</p>
+      <h1 id="title">Decyzje pod presją. Myślenie, które można odtworzyć.</h1>
+      <p class="lead">Pięć scenariuszy, praca uczestnika, osobny panel prowadzącego oraz lokalny zapis toku rozumowania. Otwórz system i wybierz perspektywę, od której chcesz zacząć.</p>
+      <div class="actions">
+        <a class="primary" href="vortex-university-lab/">Otwórz Vortex University Lab</a>
+        <a href="vortex-university-lab/prowadzacy.html">Przejdź do panelu prowadzącego</a>
+      </div>
+      <p class="note">Wersja pokazowa 0.3.1. Odpowiedzi pozostają w przeglądarce, dopóki użytkownik sam nie pobierze i nie przekaże pliku wyniku. Publiczny podgląd nie jest systemem logowania ani zabezpieczonym środowiskiem egzaminacyjnym.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vortexanalytica.com/schemas/vortexrun-v2.schema.json",
+  "title": "Vortex University Lab run export v2",
+  "$comment": "Bieżący alias kontraktu v2 dla aplikacji 0.3.1-showcase.",
+  "$ref": "vortexrun.schema.json"
+}
