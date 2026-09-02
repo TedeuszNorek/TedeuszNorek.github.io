@@ -9,8 +9,10 @@ To repozytorium publikuje wyłącznie statyczny podgląd demonstratora pod adres
 ## Aktualizacja
 
 1. Zbuduj i sprawdź aplikację w repo źródłowym.
-2. Skopiuj trzy wygenerowane pliki HTML oraz katalog `schemas` do `site/vortex-university-lab/`.
-3. Dodaj do publicznych plików HTML znacznik `robots` z wartością `noindex,nofollow`.
+2. Uruchom `python3 scripts/sync_showcase.py /pełna/ścieżka/do/wygenerowanego/pakietu`.
+3. Sprawdź zmiany poleceniem `git diff --check`.
 4. Zatwierdź zmiany i wypchnij je do gałęzi `main`. Publikacja GitHub Pages uruchomi się automatycznie.
+
+Skrypt kopiuje wyłącznie trzy dokumenty HTML i trzy schematy wyniku. Automatycznie zachowuje też znacznik `noindex,nofollow` w publicznych dokumentach.
 
 Publiczny panel prowadzącego zawiera materiał referencyjny. Nadaje się do recenzji i pokazu dla kadry, ale nie jest zabezpieczonym środowiskiem zaliczeniowym.
