@@ -3522,6 +3522,9 @@ window.VORTEX_BOOT = {"role":"facilitator","appVersion":"0.3.1-showcase","dataFo
     const confidence = Number(confidenceNode && confidenceNode.value);
     const biggestUnknown = text(unknownNode && unknownNode.value, 500);
     const initialAction = text(actionNode && actionNode.value, 500);
+    [leadingNode, alternativeNode, unknownNode, actionNode, ...document.querySelectorAll('input[name="baseline-confidence"]')]
+      .filter(Boolean)
+      .forEach((node) => node.removeAttribute("aria-invalid"));
     const errors = [];
     if (!leadingHypothesis) errors.push("Wybierzcie wariant wiodący.");
     if (!alternativeHypothesis || alternativeHypothesis === leadingHypothesis) errors.push("Wybierzcie inną, realną alternatywę.");
@@ -3532,8 +3535,17 @@ window.VORTEX_BOOT = {"role":"facilitator","appVersion":"0.3.1-showcase","dataFo
       const validation = document.getElementById("vtx-baseline-validation");
       validation.hidden = false;
       validation.textContent = errors.join(" ");
-      validation.focus();
       announce("Uzupełnijcie punkt wyjścia.", "error");
+      let target = null;
+      if (!leadingHypothesis) target = leadingNode;
+      else if (!alternativeHypothesis || alternativeHypothesis === leadingHypothesis) target = alternativeNode;
+      else if (!Number.isInteger(confidence) || confidence < 1 || confidence > 5) target = document.querySelector('input[name="baseline-confidence"]');
+      else if (biggestUnknown.length < MIN_REQUIRED_TEXT) target = unknownNode;
+      else if (initialAction.length < MIN_REQUIRED_TEXT) target = actionNode;
+      if (target) {
+        target.setAttribute("aria-invalid", "true");
+        target.focus({ preventScroll: false });
+      } else validation.focus();
       return;
     }
     state.busy = true;
@@ -4107,7 +4119,10 @@ window.VORTEX_BOOT = {"role":"facilitator","appVersion":"0.3.1-showcase","dataFo
       announce(`Uzupełnij wszystkie wymagane pola, każde minimum ${MIN_REQUIRED_TEXT} znaków, i wybierz rolę każdego otwartego materiału.`, "error");
       if (focusFirstIncompleteText('[aria-labelledby="vtx-evidence-title"]')) return;
       const roleNode = Array.from(document.querySelectorAll("[data-material-role]")).find((node) => !ROLE_LABELS[node.value]);
-      if (roleNode) roleNode.focus();
+      if (roleNode) {
+        roleNode.setAttribute("aria-invalid", "true");
+        roleNode.focus();
+      }
       return;
     }
     renderRound({ focusTarget: "vtx-decision-title" });
@@ -4125,11 +4140,23 @@ window.VORTEX_BOOT = {"role":"facilitator","appVersion":"0.3.1-showcase","dataFo
       const leading = document.getElementById("vtx-leading-hypothesis");
       const alternative = document.getElementById("vtx-alternative-hypothesis");
       const confidence = document.querySelector('input[name="confidence"]:checked');
-      if (leading && !leading.value) leading.focus();
-      else if (alternative && (!alternative.value || alternative.value === (leading && leading.value))) alternative.focus();
+      [leading, alternative, ...document.querySelectorAll('input[name="confidence"]')]
+        .filter(Boolean)
+        .forEach((node) => node.removeAttribute("aria-invalid"));
+      if (leading && !leading.value) {
+        leading.setAttribute("aria-invalid", "true");
+        leading.focus();
+      }
+      else if (alternative && (!alternative.value || alternative.value === (leading && leading.value))) {
+        alternative.setAttribute("aria-invalid", "true");
+        alternative.focus();
+      }
       else if (!confidence) {
         const firstConfidence = document.querySelector('input[name="confidence"]');
-        if (firstConfidence) firstConfidence.focus();
+        if (firstConfidence) {
+          firstConfidence.setAttribute("aria-invalid", "true");
+          firstConfidence.focus();
+        }
       }
       return;
     }
@@ -4259,8 +4286,17 @@ window.VORTEX_BOOT = {"role":"facilitator","appVersion":"0.3.1-showcase","dataFo
     if (taskId === "value-of-information" && text(state.draft.expectedUnderAlternative, 500).length < MIN_REQUIRED_TEXT) errors.push(`Oczekiwany sygnał dla alternatywy musi mieć minimum ${MIN_REQUIRED_TEXT} znaków.`);
     if (errors.length) {
       announce(errors.join(" "), "error");
-      const target = document.getElementById("vtx-information-goal");
-      if (target) target.focus();
+      const inquiryFields = [
+        document.getElementById("vtx-information-goal"),
+        document.getElementById("vtx-expected-leading"),
+        document.getElementById("vtx-expected-alternative")
+      ].filter(Boolean);
+      inquiryFields.forEach((node) => node.removeAttribute("aria-invalid"));
+      const target = inquiryFields.find((node) => text(node.value, 500).length < MIN_REQUIRED_TEXT);
+      if (target) {
+        target.setAttribute("aria-invalid", "true");
+        target.focus();
+      }
       return;
     }
     const remaining = scenarioBudget(state.scenario) - usedBudget(state.events, state.scenario);
