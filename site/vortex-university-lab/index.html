@@ -1084,19 +1084,25 @@ legend {
 }
 
 .vtx-workflow-locked {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   min-height: 72px;
   padding: 16px 20px;
   align-items: center;
   gap: 14px;
   background: var(--vortex-surface-soft);
-  opacity: 0.78;
 }
 
 .vtx-workflow-locked .vtx-workflow-number {
   color: var(--vortex-muted);
   background: transparent;
   border: 1px solid var(--vortex-line-strong);
+}
+
+.vtx-workflow-locked-action {
+  width: auto;
+  margin-left: auto;
+  white-space: nowrap;
 }
 
 .vtx-briefing {
@@ -1143,6 +1149,83 @@ legend {
 .vtx-action-card[data-selected="true"] {
   border-color: var(--vortex-cyan-dark);
   box-shadow: inset 0 0 0 1px var(--vortex-cyan-dark);
+}
+
+.vtx-evidence-grid-opened {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.vtx-evidence-subsection {
+  display: grid;
+  margin: 22px 0 0;
+  gap: 12px;
+}
+
+.vtx-evidence-subsection > h3 {
+  margin: 0;
+}
+
+.vtx-evidence-available {
+  margin-top: 22px;
+}
+
+.vtx-evidence-progress {
+  margin: 18px 0;
+  padding: 16px;
+  background: var(--vortex-surface-soft);
+  border: 1px solid var(--vortex-line);
+  border-radius: var(--vortex-radius-md);
+}
+
+.vtx-evidence-progress .vtx-section-label {
+  margin-bottom: 12px;
+}
+
+.vtx-evidence-progress .vtx-section-label h3 {
+  font-size: 1rem;
+}
+
+.vtx-evidence-checklist {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  gap: 8px;
+  list-style: none;
+}
+
+.vtx-evidence-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: var(--vortex-muted);
+  font-size: 0.88rem;
+}
+
+.vtx-evidence-checklist li[data-state="done"] {
+  color: var(--vortex-green);
+}
+
+.vtx-checkmark {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  place-items: center;
+  color: white;
+  background: var(--vortex-surface);
+  border: 1px solid var(--vortex-line-strong);
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.vtx-evidence-checklist li[data-state="done"] .vtx-checkmark {
+  background: var(--vortex-green);
+  border-color: var(--vortex-green);
+}
+
+.vtx-evidence-inline-feedback {
+  margin: 14px 0 0;
 }
 
 .vtx-evidence-card h3,
@@ -1297,6 +1380,11 @@ legend {
   color: var(--vortex-coral-dark);
   background: var(--vortex-coral-soft);
   border: 1px solid var(--vortex-coral-dark);
+}
+
+.vtx-field-help[data-state="done"] {
+  color: var(--vortex-green);
+  font-weight: 650;
 }
 
 .vtx-hidden,
@@ -1587,6 +1675,160 @@ legend {
   gap: 20px;
 }
 
+.vtx-role-mandate {
+  display: grid;
+  margin-top: 18px;
+  padding: 18px;
+  gap: 10px;
+  background: var(--vortex-cyan-soft);
+  border: 1px solid #a7dedd;
+  border-radius: var(--vortex-radius-md);
+}
+
+.vtx-role-mandate-compact {
+  padding: 14px;
+}
+
+.vtx-role-mandate-head,
+.vtx-process-score-head,
+.vtx-score-dimension-head,
+.vtx-artifact-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vtx-role-mandate p,
+.vtx-score-dimension p {
+  margin: 0;
+}
+
+.vtx-artifact {
+  margin: 14px 0;
+  padding: 14px;
+  background: var(--vortex-surface);
+  border: 1px solid var(--vortex-line-strong);
+  border-radius: 12px;
+}
+
+.vtx-artifact figcaption {
+  margin: 10px 0;
+  font-weight: 800;
+}
+
+.vtx-artifact-table {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid var(--vortex-line);
+  border-radius: 9px;
+}
+
+.vtx-artifact-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
+  gap: 12px;
+  padding: 9px 11px;
+  background: var(--vortex-surface-soft);
+}
+
+.vtx-artifact-row + .vtx-artifact-row {
+  border-top: 1px solid var(--vortex-line);
+}
+
+.vtx-artifact-row[data-tone="alert"],
+.vtx-artifact-row[data-tone="priority"] {
+  background: var(--vortex-coral-soft);
+}
+
+.vtx-artifact-row[data-tone="stable"],
+.vtx-artifact-row[data-tone="confirmed"] {
+  background: var(--vortex-green-soft);
+}
+
+.vtx-artifact-row[data-tone="uncertain"],
+.vtx-artifact-row[data-tone="weak"],
+.vtx-artifact-row[data-tone="warning"] {
+  border-left: 4px solid var(--vortex-coral);
+}
+
+.vtx-artifact-row > span,
+.vtx-artifact-row > strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.vtx-process-score {
+  padding: 24px;
+  background: var(--vortex-surface);
+  border: 1px solid var(--vortex-line);
+  border-radius: var(--vortex-radius-lg);
+  box-shadow: var(--vortex-shadow);
+}
+
+.vtx-process-score-head {
+  align-items: flex-start;
+}
+
+.vtx-process-score-head > div:first-child {
+  max-width: 760px;
+}
+
+.vtx-score-total {
+  display: flex;
+  min-width: 132px;
+  min-height: 112px;
+  padding: 18px;
+  align-items: baseline;
+  justify-content: center;
+  color: white;
+  background: var(--vortex-navy);
+  border: 3px solid var(--vortex-cyan);
+  border-radius: 20px;
+}
+
+.vtx-score-total strong {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+}
+
+.vtx-score-total span {
+  margin-left: 5px;
+  color: #c9e8e8;
+  font-weight: 750;
+}
+
+.vtx-score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 22px 0;
+  gap: 14px;
+}
+
+.vtx-score-dimension {
+  padding: 16px;
+  background: var(--vortex-surface-soft);
+  border: 1px solid var(--vortex-line);
+  border-radius: var(--vortex-radius-md);
+}
+
+.vtx-score-dimension h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.vtx-score-dimension progress {
+  width: 100%;
+  height: 10px;
+  margin: 12px 0;
+  accent-color: var(--vortex-cyan-dark);
+}
+
+.vtx-reference-path-list {
+  display: grid;
+  gap: 12px;
+}
+
 @media (max-width: 960px) {
   .vtx-card-grid,
   .vtx-outcome-grid,
@@ -1639,8 +1881,26 @@ legend {
   .vtx-promise-grid,
   .vtx-outcome-grid,
   .vtx-kpi-grid,
+  .vtx-score-grid,
   .vtx-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .vtx-process-score-head,
+  .vtx-role-mandate-head,
+  .vtx-artifact-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .vtx-score-total {
+    width: 100%;
+    min-height: 88px;
+  }
+
+  .vtx-artifact-row {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 
   .vtx-role-card {
@@ -1689,6 +1949,16 @@ legend {
   .vtx-workflow-step > summary,
   .vtx-workflow-locked {
     padding: 14px;
+  }
+
+  .vtx-workflow-locked {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .vtx-workflow-locked-action {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-left: 0;
   }
 
   .vtx-workflow-body {
@@ -1794,17 +2064,17 @@ legend {
   <main id="main">
     <section class="vtx-hero">
       <div class="vtx-shell">
-        <p class="vtx-eyebrow">System pokazowy, wersja 0.3.1</p>
+        <p class="vtx-eyebrow">System pokazowy, wersja 0.4.0</p>
         <h1>Decyzje pod presją. Myślenie, które można odtworzyć.</h1>
-        <p class="vtx-lead">Uczestnicy wybierają informacje, porównują konkurencyjne wyjaśnienia i podejmują decyzje z widocznymi korzyściami oraz kosztami. Prowadzący dostaje ślad rozumowania i konkretny materiał do debriefu.</p>
+        <p class="vtx-lead">Uczestnicy wybierają informacje, porównują konkurencyjne wyjaśnienia i podejmują decyzje z widocznymi korzyściami oraz kosztami. Prowadzący dostaje historię rozumowania i konkretny materiał do omówienia po ćwiczeniu.</p>
       </div>
     </section>
 
     <section class="vtx-section" aria-labelledby="role-title">
       <div class="vtx-shell">
         <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Najpierw wybierz rolę</p>
-          <h2 id="role-title">W jakim trybie chcesz wejść?</h2>
+          <p class="vtx-eyebrow">Najpierw wybierz widok</p>
+          <h2 id="role-title">Co chcesz zrobić?</h2>
           <p>Wybór pojawia się przed rozpoczęciem. Aktywny tryb jest później zawsze widoczny, a powrót do tego ekranu pozostaje dostępny.</p>
         </div>
         <div class="vtx-role-grid">
@@ -1818,7 +2088,7 @@ legend {
             <span class="vtx-role-number" aria-hidden="true">02</span>
             <h2>Prowadzący</h2>
             <p>Zobacz plan warsztatu, efekty kształcenia, przebieg rund, pytania do omówienia i przegląd pliku wyniku zespołu.</p>
-            <span class="vtx-arrow">Otwórz pulpit prowadzącego →</span>
+            <span class="vtx-arrow">Otwórz panel prowadzącego →</span>
           </a>
         </div>
       </div>
@@ -1827,22 +2097,22 @@ legend {
     <section class="vtx-section" aria-labelledby="engine-title">
       <div class="vtx-shell">
         <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Jeden wspólny silnik</p>
-          <h2 id="engine-title">Pięć problemów, ta sama metoda pracy</h2>
-          <p>Pełna demonstracja działa bez internetu. Dane zostały przygotowane do ćwiczenia, a uczestnicy pracują tak, jakby sytuacja rozgrywała się naprawdę.</p>
+          <p class="vtx-eyebrow">Pięć różnych kompetencji</p>
+          <h2 id="engine-title">Każdy scenariusz wymaga innego rodzaju analizy</h2>
+          <p>Po pobraniu pakiet może działać bez internetu. Każdy scenariusz zachowuje wspólny rytm pracy, ale sprawdza inny problem: dobór informacji, alokację zasobów, sieć zależności, układ aktorów albo priorytetyzację ryzyka.</p>
         </div>
         <div class="vtx-scenario-grid">
+          <article class="vtx-scenario-card">
+            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">Politologia</span><span class="vtx-tag">Stosunki międzynarodowe</span><span class="vtx-tag">24 h + 72 h</span></div>
+            <h3>Białystok 24H</h3>
+            <p class="vtx-muted">Eksplozja w budynku, kilka możliwych przyczyn, presja informacyjna i decyzje państwa przed wiarygodnym ustaleniem przyczyny.</p>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=bialystok-24h">Rozpocznij ten scenariusz</a>
+          </article>
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">12 h + 72 h</span></div>
             <h3>Czerwony Sygnał 12H</h3>
             <p class="vtx-muted">Silna eksplozja, zgodne sygnały radiacyjne i realna możliwość detonacji jądrowej. Najtrudniejsze decyzje zaczynają się zanim przyczyna zostanie potwierdzona.</p>
             <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=czerwony-sygnal-12h">Rozpocznij ten scenariusz</a>
-          </article>
-          <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">Politologia</span><span class="vtx-tag">Stosunki międzynarodowe</span><span class="vtx-tag">24 h + 72 h</span></div>
-            <h3>Białystok 24H</h3>
-            <p class="vtx-muted">Eksplozja w budynku, kilka możliwych przyczyn, presja informacyjna i decyzje państwa przed wiarygodnym ustaleniem sprawcy.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=bialystok-24h">Rozpocznij ten scenariusz</a>
           </article>
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Zarządzanie kryzysowe</span><span class="vtx-tag">48 h</span></div>
@@ -1853,7 +2123,7 @@ legend {
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Polityka gospodarcza</span><span class="vtx-tag">96 h</span></div>
             <h3>Pęknięcie Bańki</h3>
-            <p class="vtx-muted">Korekta wycen sektora obliczeniowego może pozostać problemem rynkowym albo przejść w kryzys płynności i zaufania.</p>
+            <p class="vtx-muted">Korekta wycen sektora centrów danych i infrastruktury obliczeniowej może pozostać problemem rynkowym albo przejść w kryzys płynności i zaufania.</p>
             <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=pekniecie-banki-96h">Rozpocznij ten scenariusz</a>
           </article>
           <article class="vtx-scenario-card">
@@ -1876,11 +2146,12 @@ legend {
         <div class="vtx-roadmap-grid">
           <article class="vtx-roadmap-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Teraz</span></div>
-            <h3>Ćwiczenie lokalne i odtwarzalny ślad decyzji</h3>
+            <h3>Ćwiczenie lokalne, kompletność zapisu i przebieg decyzji</h3>
             <ul>
               <li>Pięć gotowych scenariuszy szkoleniowych.</li>
               <li>Praca uczestnika i osobny widok prowadzącego.</li>
               <li>Lokalny zapis oraz eksport wyniku do omówienia.</li>
+              <li>Różne zadania analityczne, mandaty ról i czytelny wskaźnik kompletności zapisu od 0 do 100.</li>
             </ul>
           </article>
           <article class="vtx-roadmap-card">
@@ -1889,7 +2160,7 @@ legend {
             <ul>
               <li>Kontrolowane podłączanie danych rzeczywistych z opisem źródła, czasu i ograniczeń.</li>
               <li>Zespoły wcielające się w konkretne instytucje, z odmiennymi mandatami i zakresem odpowiedzialności.</li>
-              <li>Rozgrywki międzyuczelniane oparte na wspólnym scenariuszu, jawnych kryteriach i porównywalnym debriefie.</li>
+              <li>Rozgrywki międzyuczelniane oparte na wspólnym scenariuszu, jawnych kryteriach i porównywalnym sposobie omówienia wyników.</li>
             </ul>
           </article>
         </div>
@@ -1899,9 +2170,9 @@ legend {
     <section class="vtx-section" aria-labelledby="boundary-title">
       <div class="vtx-shell">
         <div class="vtx-panel vtx-panel-dark">
-          <p class="vtx-eyebrow">Uczciwa granica demonstratora</p>
-          <h2 id="boundary-title">Lokalnie, pseudonimowo, bez telemetrii</h2>
-          <p>System nie wysyła odpowiedzi do sieci. Po zakończeniu uczestnik pobiera plik wyniku i przekazuje go prowadzącemu ustalonym kanałem. Prowadzący wczytuje ten plik w swoim panelu. Autosave w przeglądarce jest wygodą, a przełącznik roli elementem pokazu, nie systemem logowania ani uprawnień.</p>
+          <p class="vtx-eyebrow">Jak przechowywane są odpowiedzi</p>
+          <h2 id="boundary-title">Lokalnie i pod pseudonimem</h2>
+          <p>System nie wysyła odpowiedzi do sieci. Po zakończeniu uczestnik pobiera plik wyniku i przekazuje go prowadzącemu ustalonym kanałem. Prowadzący wczytuje ten plik w swoim panelu. Automatyczny zapis w przeglądarce ułatwia pracę, a przełącznik widoku służy demonstracji, nie zastępuje logowania ani nadawania uprawnień.</p>
         </div>
       </div>
     </section>
@@ -1910,7 +2181,7 @@ legend {
   <footer class="vtx-footer">
     <div class="vtx-shell vtx-footer-inner">
       <p><strong>Vortex University Lab</strong><br>Materiał szkoleniowy przygotowany do ćwiczenia. Nie jest prognozą, oceną osoby ani wdrożeniem produkcyjnym.</p>
-      <p>Wersja 0.3.1-showcase<br>2 września 2026</p>
+      <p>Wersja 0.4.0-showcase<br>2 września 2026</p>
     </div>
   </footer>
 </body>

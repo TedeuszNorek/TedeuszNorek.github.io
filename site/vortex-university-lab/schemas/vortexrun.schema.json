@@ -34,7 +34,7 @@
       "required": ["id", "version"],
       "properties": {
         "id": { "const": "vortex-university-lab" },
-        "version": { "const": "0.3.1-showcase" }
+        "version": { "const": "0.4.0-showcase" }
       }
     },
     "scenario": {
@@ -79,7 +79,7 @@
         "dataClass": { "const": "pseudonymous" },
         "learningMode": { "enum": ["training", "assessment"] },
         "workForm": { "enum": ["team", "individual"] },
-        "assessmentContractVersion": { "const": "analytic-core-0.3" }
+        "assessmentContractVersion": { "const": "analytic-core-0.4" }
       }
     },
     "events": {
