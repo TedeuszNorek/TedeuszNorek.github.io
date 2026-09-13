@@ -2167,6 +2167,14 @@ legend {
   }
 }
 
+.vtx-profile-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+.vtx-profile-card { min-width: 0; padding: 1rem; border: 1px solid var(--vortex-line, #c8d1d4); border-radius: 12px; margin: 0 0 1rem; background: #fff; color: var(--vortex-ink); }
+.vtx-profile-card legend { padding: 0 .4rem; font-weight: 700; }
+.vtx-profile-card .vtx-field { margin-bottom: .9rem; }
+.vtx-profile-workspace { margin-top: 1rem; }
+.vtx-workspace-report { margin: 1.2rem 0; overflow-wrap: anywhere; }
+@media (max-width: 680px) { .vtx-profile-cards { grid-template-columns: minmax(0, 1fr); } }
+
   </style>
 </head>
 <body>
@@ -2185,11 +2193,11 @@ legend {
   </header>
 
   <main id="main">
-    <section class="vtx-hero">
+    <section class="vtx-hero-compact">
       <div class="vtx-shell">
         <p class="vtx-eyebrow">System pokazowy, wersja 0.4.0</p>
-        <h1>Decyzje pod presją. Myślenie, które można odtworzyć.</h1>
-        <p class="vtx-lead">Uczestnicy wybierają informacje, porównują konkurencyjne wyjaśnienia i podejmują decyzje z widocznymi korzyściami oraz kosztami. Prowadzący dostaje historię rozumowania i konkretny materiał do omówienia po ćwiczeniu.</p>
+        <h1>Przećwicz decyzję. Zobacz tok rozumowania.</h1>
+        <p class="vtx-lead">Wybierz widok uczestnika lub przygotuj ćwiczenie dla swoich zajęć.</p>
       </div>
     </section>
 
@@ -2198,7 +2206,6 @@ legend {
         <div class="vtx-section-head">
           <p class="vtx-eyebrow">Najpierw wybierz widok</p>
           <h2 id="role-title">Co chcesz zrobić?</h2>
-          <p>Wybór pojawia się przed rozpoczęciem. Aktywny tryb jest później zawsze widoczny, a powrót do tego ekranu pozostaje dostępny.</p>
         </div>
         <div class="vtx-role-grid">
           <a class="vtx-role-card" href="uczestnik.html">
@@ -2210,8 +2217,8 @@ legend {
           <a class="vtx-role-card" href="prowadzacy.html">
             <span class="vtx-role-number" aria-hidden="true">02</span>
             <h2>Prowadzący</h2>
-            <p>Zobacz plan warsztatu, efekty kształcenia, przebieg rund, pytania do omówienia i przegląd pliku wyniku zespołu.</p>
-            <span class="vtx-arrow">Otwórz panel prowadzącego →</span>
+            <p>Wybierz scenariusz i profil zajęć. Zapisz ustawienia dla kolejnej grupy, a po ćwiczeniu przejrzyj wyniki.</p>
+            <span class="vtx-arrow">Przygotuj zajęcia →</span>
           </a>
         </div>
       </div>
@@ -2220,9 +2227,9 @@ legend {
     <section class="vtx-section" aria-labelledby="engine-title">
       <div class="vtx-shell">
         <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Pięć różnych kompetencji</p>
+          <p class="vtx-eyebrow">Pięć scenariuszy</p>
           <h2 id="engine-title">Każdy scenariusz wymaga innego rodzaju analizy</h2>
-          <p>Po pobraniu pakiet może działać bez internetu. Każdy scenariusz zachowuje wspólny rytm pracy, ale sprawdza inny problem: dobór informacji, alokację zasobów, sieć zależności, układ aktorów albo priorytetyzację ryzyka.</p>
+          <p>Wspólny rytm pracy, różne problemy: dobór informacji, podział zasobów, sieć zależności, układ aktorów i wybór najważniejszych zagrożeń.</p>
         </div>
         <div class="vtx-scenario-grid">
           <article class="vtx-scenario-card">
@@ -2273,6 +2280,8 @@ legend {
             <ul>
               <li>Pięć scenariuszy z różnymi zadaniami analitycznymi.</li>
               <li>Role z własnym mandatem i wymaganym wkładem w decyzję.</li>
+              <li>Dodatkowe narzędzie wybranego profilu w rundzie 3: mapa aktorów, bilans zasobów albo karta negocjacji.</li>
+              <li>Ustawienia zajęć do ponownego użycia i przekazania, bez odpowiedzi studentów.</li>
               <li>Osobne widoki uczestnika i prowadzącego, lokalny zapis oraz raport do omówienia.</li>
               <li>Gotowy przebieg ćwiczenia i materiał do rozmowy o zastosowaniu na zajęciach.</li>
             </ul>
@@ -2294,6 +2303,7 @@ legend {
               <li>Sesje, w których zespoły reprezentują instytucje z odmiennymi mandatami i informacjami.</li>
               <li>Sprawdzone zestawy danych historycznych z opisem źródła, czasu i ograniczeń.</li>
               <li>Informacja zwrotna wspomagana przez AI, po sprawdzeniu jej jakości i z zatwierdzeniem prowadzącego.</li>
+              <li>Panel grupy, kolejne edycje przedmiotu i połączenie z uczelnianą platformą zajęć.</li>
             </ul>
           </article>
         </div>
@@ -2314,7 +2324,7 @@ legend {
   <footer class="vtx-footer">
     <div class="vtx-shell vtx-footer-inner">
       <p><strong>Vortex University Lab</strong><br>Materiał szkoleniowy przygotowany do ćwiczenia. Nie jest prognozą, oceną osoby ani wdrożeniem produkcyjnym.</p>
-      <p>Wersja 0.4.0-showcase<br>Aktualizacja: 13 września 2026</p>
+      <p>Wersja 0.4.0-showcase<br>Aktualizacja: 14 września 2026</p>
     </div>
   </footer>
 </body>
