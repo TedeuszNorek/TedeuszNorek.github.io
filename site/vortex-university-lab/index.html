@@ -890,43 +890,102 @@ legend {
   outline-offset: 3px;
 }
 
-.vtx-stepper {
+.vtx-journey-note {
   display: grid;
-  margin: 0 0 24px;
-  padding: 0;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  list-style: none;
-}
-
-.vtx-step {
-  display: grid;
-  min-height: 64px;
-  padding: 10px 12px;
-  align-content: center;
-  gap: 3px;
-  color: var(--vortex-muted);
-  background: var(--vortex-surface-soft);
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 15px 18px;
+  background: var(--vortex-cyan-soft);
   border: 1px solid var(--vortex-line);
-  border-radius: 12px;
-  font-size: 0.78rem;
-}
-
-.vtx-step strong {
-  color: inherit;
+  border-radius: var(--vortex-radius-md);
   font-size: 0.9rem;
 }
 
-.vtx-step[data-state="current"] {
+.vtx-round-progress {
+  position: sticky;
+  z-index: 20;
+  top: 78px;
+  margin: 0 0 24px;
+  padding: 12px 16px;
+  background: var(--vortex-surface);
+  border: 1px solid var(--vortex-line);
+  border-radius: var(--vortex-radius-md);
+  box-shadow: var(--vortex-shadow);
+}
+
+.vtx-round-progress-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+}
+
+.vtx-round-progress-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 9px 0 7px;
+  padding: 0;
+  list-style: none;
+}
+
+.vtx-round-progress-link {
+  display: flex;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 10px;
+  align-items: center;
+  gap: 8px;
   color: var(--vortex-ink);
-  background: var(--vortex-cyan-soft);
+  background: var(--vortex-surface-soft);
+  border: 1px solid var(--vortex-line);
+  border-radius: 9px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.vtx-round-progress-link:hover {
   border-color: var(--vortex-cyan-dark);
 }
 
-.vtx-step[data-state="done"] {
-  color: var(--vortex-green);
-  background: var(--vortex-green-soft);
-  border-color: #a7d0c1;
+.vtx-round-progress-link[aria-current="step"] {
+  background: var(--vortex-cyan-soft);
+  border-color: var(--vortex-cyan-dark);
+  box-shadow: inset 0 0 0 1px var(--vortex-cyan-dark);
+}
+
+.vtx-round-progress-link strong,
+.vtx-round-progress-link small {
+  display: block;
+}
+
+.vtx-round-progress-link strong {
+  font-size: 0.86rem;
+}
+
+.vtx-round-progress-link small {
+  margin-top: 2px;
+  color: var(--vortex-muted);
+  font-size: 0.71rem;
+}
+
+.vtx-progress-number {
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.vtx-round-progress p {
+  margin: 0;
+}
+
+.vtx-round-grid [tabindex="-1"],
+.vtx-round-grid input,
+.vtx-round-grid select,
+.vtx-round-grid textarea,
+.vtx-round-grid button,
+.vtx-round-grid summary {
+  scroll-margin-top: 245px;
 }
 
 .vtx-run-header {
@@ -1539,7 +1598,7 @@ legend {
 
 .vtx-knowledge-panel {
   position: sticky;
-  top: 92px;
+  top: 245px;
 }
 
 .vtx-knowledge-panel h2 {
@@ -1685,6 +1744,28 @@ legend {
   border-radius: var(--vortex-radius-md);
 }
 
+.vtx-briefing .vtx-disclosure,
+.vtx-briefing .vtx-role-mandate,
+.vtx-panel-dark .vtx-disclosure,
+.vtx-panel-dark .vtx-role-mandate {
+  color: var(--vortex-ink);
+}
+
+.vtx-briefing .vtx-disclosure p,
+.vtx-briefing .vtx-role-mandate p,
+.vtx-panel-dark .vtx-disclosure p,
+.vtx-panel-dark .vtx-role-mandate p,
+.vtx-panel-dark .vtx-role-mandate .vtx-field-help {
+  color: var(--vortex-muted);
+}
+
+.vtx-briefing .vtx-role-mandate label,
+.vtx-briefing .vtx-role-mandate legend,
+.vtx-panel-dark .vtx-role-mandate .vtx-field label,
+.vtx-panel-dark .vtx-role-mandate legend {
+  color: var(--vortex-ink);
+}
+
 .vtx-role-mandate-compact {
   padding: 14px;
 }
@@ -1774,54 +1855,49 @@ legend {
   max-width: 760px;
 }
 
-.vtx-score-total {
-  display: flex;
-  min-width: 132px;
-  min-height: 112px;
-  padding: 18px;
-  align-items: baseline;
-  justify-content: center;
-  color: white;
-  background: var(--vortex-navy);
-  border: 3px solid var(--vortex-cyan);
-  border-radius: 20px;
-}
-
-.vtx-score-total strong {
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
-  line-height: 1;
-}
-
-.vtx-score-total span {
-  margin-left: 5px;
-  color: #c9e8e8;
+.vtx-completion-count {
+  flex-shrink: 0;
+  padding: 9px 12px;
+  color: var(--vortex-ink);
+  background: var(--vortex-cyan-soft);
+  border-radius: 8px;
+  font-size: 0.88rem;
   font-weight: 750;
 }
 
-.vtx-score-grid {
+.vtx-completion-list {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vtx-completion-list li {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 22px 0;
-  gap: 14px;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid var(--vortex-line);
 }
 
-.vtx-score-dimension {
-  padding: 16px;
-  background: var(--vortex-surface-soft);
-  border: 1px solid var(--vortex-line);
-  border-radius: var(--vortex-radius-md);
+.vtx-completion-list p {
+  margin: 3px 0 0;
 }
 
-.vtx-score-dimension h3 {
-  margin: 0;
-  font-size: 1rem;
+.vtx-completion-list [data-state="done"] .vtx-checkmark {
+  color: var(--vortex-ink);
+  background: var(--vortex-cyan-soft);
+  border-color: var(--vortex-cyan-dark);
 }
 
-.vtx-score-dimension progress {
-  width: 100%;
-  height: 10px;
-  margin: 12px 0;
-  accent-color: var(--vortex-cyan-dark);
+.vtx-completion-status {
+  text-align: right;
+}
+
+.vtx-completion-action {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
 }
 
 .vtx-reference-path-list {
@@ -1881,7 +1957,6 @@ legend {
   .vtx-promise-grid,
   .vtx-outcome-grid,
   .vtx-kpi-grid,
-  .vtx-score-grid,
   .vtx-form-grid {
     grid-template-columns: 1fr;
   }
@@ -1893,9 +1968,14 @@ legend {
     flex-direction: column;
   }
 
-  .vtx-score-total {
-    width: 100%;
-    min-height: 88px;
+  .vtx-completion-list li {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .vtx-completion-status,
+  .vtx-completion-action {
+    grid-column: 2;
+    text-align: left;
   }
 
   .vtx-artifact-row {
@@ -1931,8 +2011,34 @@ legend {
     min-width: 0;
   }
 
-  .vtx-stepper {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .vtx-round-progress {
+    top: 68px;
+    padding: 10px;
+  }
+
+  .vtx-round-progress-steps {
+    gap: 4px;
+  }
+
+  .vtx-round-progress-link {
+    display: grid;
+    padding: 7px 4px;
+    gap: 2px;
+    align-content: start;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .vtx-round-progress-link strong {
+    font-size: 0.72rem;
+  }
+
+  .vtx-round-progress-link small {
+    display: none;
+  }
+
+  .vtx-round-progress > p {
+    display: none;
   }
 
   .vtx-radio-row,
@@ -1990,6 +2096,22 @@ legend {
   }
 }
 
+@media (max-height: 600px) {
+  .vtx-round-progress,
+  .vtx-knowledge-panel {
+    position: static;
+  }
+
+  .vtx-round-grid [tabindex="-1"],
+  .vtx-round-grid input,
+  .vtx-round-grid select,
+  .vtx-round-grid textarea,
+  .vtx-round-grid button,
+  .vtx-round-grid summary {
+    scroll-margin-top: 92px;
+  }
+}
+
 @media print {
   :root {
     color-scheme: light;
@@ -2001,6 +2123,7 @@ legend {
   }
 
   .vtx-topbar,
+  .vtx-round-progress,
   .vtx-toolbar,
   .vtx-button,
   .vtx-footer,
@@ -2139,28 +2262,38 @@ legend {
     <section class="vtx-section" aria-labelledby="roadmap-title">
       <div class="vtx-shell">
         <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Rozwój systemu</p>
-          <h2 id="roadmap-title">Co działa teraz, co planujemy dalej</h2>
-          <p>Pokaz oddziela gotowe mechanizmy od kierunków kolejnych wersji, aby nie przedstawiać planów jako istniejących funkcji.</p>
+          <p class="vtx-eyebrow">Roadmapa do rozmowy z uczelnią</p>
+          <h2 id="roadmap-title">Dzisiaj, najbliższy pilot, dalszy rozwój</h2>
+          <p>Każdy etap ma inny cel. Działający demonstrator służy do wyboru sensownego pilota, a funkcje wymagające walidacji pozostają wyraźnie oznaczonym kierunkiem rozwoju.</p>
         </div>
-        <div class="vtx-roadmap-grid">
+        <div class="vtx-card-grid">
           <article class="vtx-roadmap-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Teraz</span></div>
-            <h3>Ćwiczenie lokalne, kompletność zapisu i przebieg decyzji</h3>
+            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Dzisiaj</span></div>
+            <h3>Działający demonstrator prowadzony przez wykładowcę</h3>
             <ul>
-              <li>Pięć gotowych scenariuszy szkoleniowych.</li>
-              <li>Praca uczestnika i osobny widok prowadzącego.</li>
-              <li>Lokalny zapis oraz eksport wyniku do omówienia.</li>
-              <li>Różne zadania analityczne, mandaty ról i czytelny wskaźnik kompletności zapisu od 0 do 100.</li>
+              <li>Pięć scenariuszy z różnymi zadaniami analitycznymi.</li>
+              <li>Role z własnym mandatem i wymaganym wkładem w decyzję.</li>
+              <li>Osobne widoki uczestnika i prowadzącego, lokalny zapis oraz raport do omówienia.</li>
+              <li>To demonstrator warsztatu, nie potwierdzone wdrożenie ani dowód efektu kształcenia.</li>
             </ul>
           </article>
           <article class="vtx-roadmap-card">
-            <div class="vtx-tag-row"><span class="vtx-tag">Kolejne wersje</span></div>
-            <h3>Więcej źródeł, ról i współpracy między uczelniami</h3>
+            <div class="vtx-tag-row"><span class="vtx-tag">Najbliższy pilot</span></div>
+            <h3>Sprawny warsztat i wybrany przypadek użycia</h3>
             <ul>
-              <li>Kontrolowane podłączanie danych rzeczywistych z opisem źródła, czasu i ograniczeń.</li>
-              <li>Zespoły wcielające się w konkretne instytucje, z odmiennymi mandatami i zakresem odpowiedzialności.</li>
-              <li>Rozgrywki międzyuczelniane oparte na wspólnym scenariuszu, jawnych kryteriach i porównywalnym sposobie omówienia wyników.</li>
+              <li>Wspólnie wybieramy scenariusz, format zajęć i kryteria powodzenia.</li>
+              <li>Sprawdzamy użyteczność, obciążenie uczestników i jakość materiału do omówienia.</li>
+              <li>Mierzymy, czy gotowy przebieg, materiały i raport ograniczają czas przygotowania oraz ręcznego odtwarzania pracy przez prowadzącego.</li>
+            </ul>
+          </article>
+          <article class="vtx-roadmap-card">
+            <div class="vtx-tag-row"><span class="vtx-tag">Dalszy rozwój</span></div>
+            <h3>Konsekwencje, instytucje, dane i feedback po walidacji</h3>
+            <ul>
+              <li>Dynamiczne skutki decyzji oparte na jawnych, odtwarzalnych regułach.</li>
+              <li>Sesje, w których zespoły reprezentują instytucje z odmiennymi mandatami i informacjami.</li>
+              <li>Zatwierdzone snapshoty danych historycznych z opisem źródła, czasu i ograniczeń.</li>
+              <li>Feedback wspomagany przez AI dopiero po walidacji i z zatwierdzeniem prowadzącego.</li>
             </ul>
           </article>
         </div>
@@ -2181,7 +2314,7 @@ legend {
   <footer class="vtx-footer">
     <div class="vtx-shell vtx-footer-inner">
       <p><strong>Vortex University Lab</strong><br>Materiał szkoleniowy przygotowany do ćwiczenia. Nie jest prognozą, oceną osoby ani wdrożeniem produkcyjnym.</p>
-      <p>Wersja 0.4.0-showcase<br>2 września 2026</p>
+      <p>Wersja 0.4.0-showcase<br>Aktualizacja: 13 września 2026</p>
     </div>
   </footer>
 </body>
