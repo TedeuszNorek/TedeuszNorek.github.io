@@ -920,6 +920,25 @@ legend {
   gap: 4px 16px;
 }
 
+.vtx-session-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 3px 16px;
+  margin-bottom: 9px;
+  padding-bottom: 9px;
+  color: var(--vortex-muted);
+  border-bottom: 1px solid var(--vortex-line);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.vtx-session-context strong {
+  color: var(--vortex-ink);
+  font-weight: 700;
+}
+
 .vtx-round-progress-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -929,9 +948,15 @@ legend {
   list-style: none;
 }
 
+.vtx-round-progress-steps > li,
+.vtx-round-progress-link > span {
+  min-width: 0;
+}
+
 .vtx-round-progress-link {
   display: flex;
   width: 100%;
+  height: 100%;
   min-height: 48px;
   padding: 8px 10px;
   align-items: center;
@@ -941,11 +966,20 @@ legend {
   border: 1px solid var(--vortex-line);
   border-radius: 9px;
   text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
   cursor: pointer;
 }
 
 .vtx-round-progress-link:hover {
   border-color: var(--vortex-cyan-dark);
+  background: var(--vortex-cyan-soft);
+}
+
+.vtx-round-progress-link:hover strong,
+.vtx-round-progress-link:focus-visible strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .vtx-round-progress-link[aria-current="step"] {
@@ -961,6 +995,7 @@ legend {
 
 .vtx-round-progress-link strong {
   font-size: 0.86rem;
+  line-height: 1.3;
 }
 
 .vtx-round-progress-link small {
@@ -970,9 +1005,26 @@ legend {
 }
 
 .vtx-progress-number {
+  display: inline-grid;
+  width: 26px;
+  min-height: 26px;
   flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--vortex-line-strong);
+  border-radius: 50%;
   font-size: 0.85rem;
   font-weight: 750;
+}
+
+.vtx-round-progress-link[aria-current="step"] .vtx-progress-number {
+  color: var(--vortex-surface);
+  background: var(--vortex-cyan-dark);
+  border-color: var(--vortex-cyan-dark);
+}
+
+.vtx-round-progress-link[aria-current="step"] small {
+  color: var(--vortex-cyan-dark);
+  font-weight: 700;
 }
 
 .vtx-round-progress p {
@@ -985,7 +1037,7 @@ legend {
 .vtx-round-grid textarea,
 .vtx-round-grid button,
 .vtx-round-grid summary {
-  scroll-margin-top: 245px;
+  scroll-margin-top: 320px;
 }
 
 .vtx-run-header {
@@ -1051,9 +1103,14 @@ legend {
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.9fr);
   grid-template-areas:
     "briefing knowledge"
-    "workflow history";
+    "glossary glossary"
+    "workflow workflow";
   gap: 22px;
   align-items: start;
+}
+
+.vtx-round-grid > * {
+  min-width: 0;
 }
 
 .vtx-briefing {
@@ -1068,12 +1125,11 @@ legend {
   grid-area: workflow;
 }
 
-.vtx-round-side {
-  grid-area: history;
+.vtx-glossary {
+  grid-area: glossary;
 }
 
-.vtx-round-main,
-.vtx-round-side {
+.vtx-round-main {
   display: grid;
   gap: 20px;
 }
@@ -1280,10 +1336,52 @@ legend {
 
 .vtx-evidence-checklist li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 9px;
   color: var(--vortex-muted);
   font-size: 0.88rem;
+}
+
+.vtx-task-link {
+  display: inline-flex;
+  width: auto;
+  min-height: 44px;
+  max-width: 100%;
+  margin-left: auto;
+  padding: 7px 4px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  color: var(--vortex-cyan-dark);
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: normal;
+  cursor: pointer;
+}
+
+.vtx-task-link::after {
+  content: "\2192";
+  text-decoration: none;
+}
+
+.vtx-task-link:hover,
+.vtx-task-link:focus-visible {
+  color: var(--vortex-ink);
+  background: var(--vortex-cyan-soft);
+  text-decoration-thickness: 2px;
+}
+
+.vtx-evidence-checklist .vtx-task-link {
+  min-width: 0;
+  margin-left: 0;
+  flex: 1;
 }
 
 .vtx-evidence-checklist li[data-state="done"] {
@@ -1947,8 +2045,8 @@ legend {
     grid-template-areas:
       "briefing"
       "knowledge"
-      "workflow"
-      "history";
+      "glossary"
+      "workflow";
   }
 
   .vtx-rubric-grid {
@@ -2038,6 +2136,7 @@ legend {
   }
 
   .vtx-round-progress {
+    position: static;
     top: 68px;
     padding: 10px;
   }
@@ -2051,20 +2150,36 @@ legend {
     padding: 7px 4px;
     gap: 2px;
     align-content: start;
+    justify-items: center;
     text-align: center;
     overflow-wrap: anywhere;
   }
 
   .vtx-round-progress-link strong {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
   }
 
   .vtx-round-progress-link small {
-    display: none;
+    font-size: 0.69rem;
+    line-height: 1.3;
   }
 
   .vtx-round-progress > p {
     display: none;
+  }
+
+  .vtx-session-context {
+    gap: 3px 12px;
+    font-size: 0.75rem;
+  }
+
+  .vtx-round-grid [tabindex="-1"],
+  .vtx-round-grid input,
+  .vtx-round-grid select,
+  .vtx-round-grid textarea,
+  .vtx-round-grid button,
+  .vtx-round-grid summary {
+    scroll-margin-top: 92px;
   }
 
   .vtx-radio-row,
@@ -2099,6 +2214,19 @@ legend {
 }
 
 @media (max-width: 480px) {
+  .vtx-round-progress-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .vtx-round-progress-link {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    align-items: center;
+    text-align: left;
+  }
+
   .vtx-wordmark > span:last-child {
     display: none;
   }
@@ -2122,7 +2250,7 @@ legend {
   }
 }
 
-@media (max-height: 600px) {
+@media (max-height: 720px) {
   .vtx-round-progress,
   .vtx-knowledge-panel {
     position: static;
@@ -2360,7 +2488,7 @@ legend {
       <div class="vtx-shell vtx-opening-format-grid">
         <article><h2>W zespole</h2><p>3-5 osób, wspólna dyskusja, jeden laptop i jeden zapis odpowiedzi.</p></article>
         <article><h2>Indywidualnie</h2><p>Każda osoba pracuje na własnym urządzeniu i tworzy własny zapis. Urządzenia nie synchronizują odpowiedzi.</p></article>
-        <article><h2>Warsztat: ok. 90-120 min</h2><p>Szacunek dla fragmentu prowadzonego z omówieniem. Czas pełnego przebiegu nie został jeszcze zmierzony.</p></article>
+        <article><h2>Warsztat: 90-120 min</h2><p>Ćwiczenie prowadzone z omówieniem decyzji i wniosków.</p></article>
       </div>
     </section>
 
@@ -2369,28 +2497,28 @@ legend {
         <div class="vtx-section-head">
           <p class="vtx-eyebrow">Trzy propozycje na początek</p>
           <h2 id="engine-title">Wybierz sytuację, którą chcecie przeanalizować.</h2>
-          <p>24H, 48H i 72H w nazwach oznaczają czas zdarzeń w świecie scenariusza. Nie określają długości zajęć. Szacunek 90-120 minut dotyczy fragmentu z omówieniem, a czas pełnego przebiegu pozostaje niezmierzony.</p>
+          <p>Warsztat trwa 90-120 minut. 24H, 48H i 72H w nazwach opisują godziny zdarzeń w scenariuszu, nie długość zajęć.</p>
         </div>
         <div class="vtx-starting-scenarios">
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo państwa</span></div>
             <h3>Białystok 24H</h3>
             <p class="vtx-muted">Eksplozja w budynku. Służby sprawdzają kilka możliwych przyczyn, a państwo musi działać i komunikować się z obywatelami przed ich potwierdzeniem.</p>
-            <p class="vtx-scenario-timing">Warsztat: ok. 90-120 min<br><span>Czas zdarzeń: 24 godziny, prognoza na kolejne 72 godziny.</span></p>
+            <p class="vtx-scenario-timing">Warsztat: 90-120 min<br><span>Czas zdarzeń: 24 godziny, prognoza na kolejne 72 godziny.</span></p>
             <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=bialystok-24h">Wybierz Białystok 24H</a>
           </article>
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Zarządzanie kryzysowe</span></div>
             <h3>Wielka Woda 48H</h3>
             <p class="vtx-muted">Nadchodzi fala powodziowa. Trzeba zdecydować, gdzie skierować ludzi i sprzęt, co chronić w pierwszej kolejności i kiedy zmienić plan.</p>
-            <p class="vtx-scenario-timing">Warsztat: ok. 90-120 min<br><span>Czas zdarzeń: 48 godzin.</span></p>
+            <p class="vtx-scenario-timing">Warsztat: 90-120 min<br><span>Czas zdarzeń: 48 godzin.</span></p>
             <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=wielka-woda-48h">Wybierz Wielką Wodę</a>
           </article>
           <article class="vtx-scenario-card">
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Technologia i państwo</span></div>
             <h3>Próg 72H</h3>
             <p class="vtx-muted">Rok 2032. Operatorzy tracą kontrolę nad autonomicznym systemem AI. Rząd musi ograniczyć jego działanie, utrzymać kluczowe usługi i uzgodnić wspólną odpowiedź z partnerami.</p>
-            <p class="vtx-scenario-timing">Warsztat: ok. 90-120 min<br><span>Czas zdarzeń: 72 godziny.</span></p>
+            <p class="vtx-scenario-timing">Warsztat: 90-120 min<br><span>Czas zdarzeń: 72 godziny.</span></p>
             <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=prog-72h">Wybierz Próg 72H</a>
           </article>
         </div>
