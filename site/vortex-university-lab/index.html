@@ -1020,6 +1020,24 @@ legend {
   font-size: 1.65rem;
 }
 
+.vtx-budget-help { text-align: left; max-width: 320px; margin-top: 12px; font-size: 13px; }
+.vtx-budget-help summary { cursor: pointer; text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.vtx-budget-help p { line-height: 1.55; margin: 12px 0 0; }
+.vtx-step-purpose { border-left: 3px solid var(--vtx-accent, #125259); padding: 8px 0 8px 16px; line-height: 1.65; max-width: 78ch; }
+.vtx-session-statistics { margin: 32px 0; border-top: 1px solid #cbd5d1; border-bottom: 1px solid #cbd5d1; padding: 28px 0; }
+.vtx-session-statistics .vtx-kpi { background: transparent; padding-left: 0; border: 0; box-shadow: none; }
+.vtx-session-statistics .vtx-kpi strong { font-variant-numeric: tabular-nums; }
+.vtx-rule-result { display: flex; align-items: center; gap: 24px; padding: 24px; margin: 24px 0 14px; background: #e4eeee; color: #16383a; border-radius: 10px; }
+.vtx-rule-result > strong { font-size: clamp(32px, 5vw, 54px); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.vtx-rule-result h3 { margin: 0 0 8px; color: inherit; }
+.vtx-rule-result p { margin: 0; }
+.vtx-scenario-resolution > ul { line-height: 1.7; max-width: 90ch; }
+.vtx-scenario-resolution > ul li { margin-bottom: 14px; }
+.vtx-open-dossier { max-width: 320px; }
+.vtx-open-dossier strong { font-size: 20px; }
+#vtx-main h1 { scroll-margin-top: 92px; }
+@media (max-width: 600px) { .vtx-rule-result { align-items: flex-start; flex-direction: column; gap: 12px; } }
+
 .vtx-round-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.9fr);
@@ -2175,9 +2193,391 @@ legend {
 .vtx-workspace-report { margin: 1.2rem 0; overflow-wrap: anywhere; }
 @media (max-width: 680px) { .vtx-profile-cards { grid-template-columns: minmax(0, 1fr); } }
 
+/* Opening page only. The exercise keeps its existing, quiet workspace. */
+.vtx-opening-page {
+  background: var(--vortex-bg);
+}
+
+.vtx-opening {
+  overflow: hidden;
+  padding: clamp(42px, 7vw, 86px) 0 clamp(36px, 6vw, 70px);
+  color: var(--vortex-surface);
+  background: var(--vortex-navy);
+  border-bottom: 1px solid #28464d;
+}
+
+.vtx-opening-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 54px);
+}
+
+.vtx-opening-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.vtx-opening .vtx-eyebrow {
+  margin-bottom: 22px;
+  color: #91dddd;
+  font-size: 0.73rem;
+  letter-spacing: 0.1em;
+}
+
+.vtx-opening h1 {
+  margin: 0 0 22px;
+  font-size: clamp(2.3rem, 4.1vw, 3.4rem);
+  font-weight: 560;
+  line-height: 1.09;
+  letter-spacing: -0.055em;
+}
+
+.vtx-opening h1 span {
+  color: #91dddd;
+}
+
+.vtx-opening-lead {
+  max-width: 480px;
+  margin-bottom: 28px;
+  color: #c5d4d8;
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.65;
+}
+
+.vtx-opening-actions {
+  display: grid;
+  max-width: 450px;
+  gap: 10px;
+}
+
+.vtx-opening-entry {
+  display: flex;
+  min-height: 72px;
+  padding: 15px 18px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #54737b;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.vtx-opening-entry strong,
+.vtx-opening-entry small {
+  display: block;
+}
+
+.vtx-opening-entry strong {
+  font-size: 0.98rem;
+  font-weight: 750;
+}
+
+.vtx-opening-entry small {
+  margin-top: 3px;
+  font-size: 0.8rem;
+}
+
+.vtx-opening-entry-primary {
+  color: var(--vortex-navy);
+  background: var(--vortex-cyan);
+  border-color: var(--vortex-cyan);
+}
+
+.vtx-opening-entry-primary:hover {
+  background: #87dfdf;
+  border-color: #87dfdf;
+}
+
+.vtx-opening-entry-secondary {
+  color: var(--vortex-surface);
+  background: transparent;
+}
+
+.vtx-opening-entry-secondary small {
+  color: #c5d4d8;
+}
+
+.vtx-opening-entry-secondary:hover {
+  background: #102129;
+  border-color: #91dddd;
+}
+
+.vtx-opening-entry:focus-visible {
+  outline-color: #b2ffff;
+  outline-offset: 4px;
+}
+
+.vtx-opening-arrow {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.vtx-opening-note {
+  margin: 20px 0 0;
+  color: #aabdc3;
+  font-size: 0.76rem;
+}
+
+.vtx-signal-figure {
+  min-width: 0;
+  margin: 0;
+}
+
+.vtx-signal-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 14px;
+  gap: 14px;
+  color: #aabdc3;
+  border-bottom: 1px solid #28464d;
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+.vtx-signal-map {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 12px 0 3px;
+  overflow: visible;
+}
+
+.vtx-signal-guides {
+  stroke: #28464d;
+  stroke-width: 0.85;
+}
+
+.vtx-signal-paths {
+  stroke: #55c9ce;
+  stroke-width: 1.4;
+}
+
+.vtx-signal-line {
+  stroke-dasharray: 230;
+  stroke-dashoffset: 0;
+  animation: vtx-signal-connect 1.7s ease-out both;
+}
+
+.vtx-signal-line-b {
+  animation-delay: 0.55s;
+}
+
+.vtx-signal-line-c {
+  animation-delay: 1.1s;
+}
+
+.vtx-signal-orbit {
+  opacity: 0.5;
+  stroke-dasharray: 330;
+  animation: vtx-signal-orbit-reveal 4.6s ease-out both;
+}
+
+.vtx-signal-center > circle:first-child {
+  fill: #102129;
+  stroke: #55c9ce;
+  stroke-width: 1;
+}
+
+.vtx-signal-core {
+  fill: #75d9db;
+}
+
+.vtx-signal-center-label {
+  fill: #fcfcfa;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+}
+
+.vtx-signal-center-caption {
+  fill: #c5d4d8;
+  font-size: 11px;
+}
+
+.vtx-signal-node circle {
+  fill: #071015;
+  stroke: #8de0e1;
+  stroke-width: 2;
+}
+
+.vtx-signal-node-label {
+  fill: #fcfcfa;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.vtx-signal-node-caption {
+  fill: #aabdc3;
+  font-size: 12px;
+}
+
+.vtx-signal-index {
+  fill: #aabdc3;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.vtx-signal-index path {
+  stroke: #75d9db;
+  stroke-width: 1;
+}
+
+.vtx-signal-figure figcaption {
+  max-width: 430px;
+  margin-top: 9px;
+  color: #aabdc3;
+  font-size: 0.79rem;
+  line-height: 1.6;
+}
+
+.vtx-opening-outcomes {
+  padding: 30px 0;
+  border-bottom: 1px solid var(--vortex-line);
+}
+
+.vtx-opening-outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.vtx-opening-outcome-grid article + article {
+  padding-left: 30px;
+  border-left: 1px solid var(--vortex-line);
+}
+
+.vtx-opening-outcome-grid h2 {
+  margin: 0 0 9px;
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.vtx-opening-outcome-grid p {
+  margin: 0;
+  color: var(--vortex-muted);
+  font-size: 0.88rem;
+}
+
+.vtx-opening-page .vtx-scenario-featured {
+  background: var(--vortex-cyan-soft);
+  border-color: var(--vortex-cyan-dark);
+  border-top-width: 3px;
+}
+
+@keyframes vtx-signal-connect {
+  from { stroke-dashoffset: 230; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes vtx-signal-orbit-reveal {
+  from { stroke-dashoffset: 330; opacity: 0.12; }
+  to { stroke-dashoffset: 0; opacity: 0.5; }
+}
+
+@media (max-width: 880px) {
+  .vtx-opening-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.83fr);
+    gap: 24px;
+  }
+
+  .vtx-opening h1 {
+    font-size: clamp(2.2rem, 4.8vw, 3rem);
+  }
+
+  .vtx-opening-outcome-grid,
+  .vtx-opening-outcome-grid article + article {
+    gap: 20px;
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
+@media (max-width: 680px) {
+  .vtx-opening-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .vtx-opening h1 {
+    font-size: clamp(2rem, 7.8vw, 3.2rem);
+  }
+
+  .vtx-opening-actions,
+  .vtx-opening-lead {
+    max-width: none;
+  }
+
+  .vtx-signal-figure {
+    width: min(100%, 440px);
+    margin: 0 auto;
+  }
+
+  .vtx-signal-node-label {
+    font-size: 22px;
+  }
+
+  .vtx-signal-center-label {
+    font-size: 28px;
+  }
+
+  .vtx-signal-node-caption,
+  .vtx-signal-center-caption,
+  .vtx-signal-index {
+    display: none;
+  }
+
+  .vtx-opening-outcome-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .vtx-opening-outcome-grid article + article {
+    padding-top: 18px;
+    border-top: 1px solid var(--vortex-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vtx-signal-line,
+  .vtx-signal-orbit {
+    animation: none;
+  }
+
+  .vtx-opening-entry {
+    transition: none;
+  }
+}
+
+@media print {
+  .vtx-opening {
+    color: #122027;
+    background: white;
+  }
+
+  .vtx-opening-layout {
+    display: block;
+  }
+
+  .vtx-opening p,
+  .vtx-opening h1 span {
+    color: #50646d;
+  }
+
+  .vtx-signal-figure,
+  .vtx-opening-actions {
+    display: none;
+  }
+}
+
   </style>
 </head>
-<body>
+<body class="vtx-opening-page">
   <a class="vtx-skip-link" href="#main">Przejdź do wyboru trybu</a>
   <header class="vtx-topbar">
     <div class="vtx-topbar-inner">
@@ -2193,76 +2593,134 @@ legend {
   </header>
 
   <main id="main">
-    <section class="vtx-hero-compact">
-      <div class="vtx-shell">
-        <p class="vtx-eyebrow">System pokazowy, wersja 0.4.0</p>
-        <h1>Przećwicz decyzję. Zobacz tok rozumowania.</h1>
-        <p class="vtx-lead">Wybierz widok uczestnika lub przygotuj ćwiczenie dla swoich zajęć.</p>
+    <section class="vtx-opening" aria-labelledby="opening-title">
+      <div class="vtx-shell vtx-opening-layout">
+        <div class="vtx-opening-copy">
+          <p class="vtx-eyebrow">Vortex University Lab · symulacje dla uczelni</p>
+          <h1 id="opening-title">Przećwicz decyzję.<br><span>Zobacz rozumowanie.</span></h1>
+          <p class="vtx-opening-lead">Informacje napływają. Czas i zasoby są ograniczone. Wybierz działanie, uzasadnij je i zobacz, co zmieniło się w Twojej ocenie.</p>
+          <div class="vtx-opening-actions" aria-label="Wybierz widok">
+            <a class="vtx-opening-entry vtx-opening-entry-primary" href="uczestnik.html">
+              <span><strong>Rozpocznij jako uczestnik</strong><small>Wybierz scenariusz i przejdź ćwiczenie.</small></span>
+              <span class="vtx-opening-arrow" aria-hidden="true">↗</span>
+            </a>
+            <a class="vtx-opening-entry vtx-opening-entry-secondary" href="prowadzacy.html">
+              <span><strong>Otwórz panel prowadzącego</strong><small>Przygotuj zajęcia lub przejrzyj wynik.</small></span>
+              <span class="vtx-opening-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p class="vtx-opening-note">4 rundy · indywidualnie lub zespołowo · omówienie i wnioski</p>
+        </div>
+
+        <figure class="vtx-signal-figure">
+          <div class="vtx-signal-heading"><span>Od informacji do decyzji</span><span aria-hidden="true">V / LAB</span></div>
+          <svg class="vtx-signal-map" viewBox="0 0 520 420" role="img" aria-labelledby="signal-title signal-description">
+            <title id="signal-title">Decyzja połączona z informacjami, założeniami i działaniem</title>
+            <desc id="signal-description">Trzy węzły: co wiemy, co zakładamy i co robimy. Łączą się w decyzję, której uzasadnienie zostaje w wyniku ćwiczenia. Schemat pokazuje metodę pracy, nie dane ani wynik uczestnika.</desc>
+            <g class="vtx-signal-guides" fill="none">
+              <circle cx="268" cy="210" r="152"/>
+              <circle cx="268" cy="210" r="102"/>
+              <path d="M78 210H457M268 27V393"/>
+              <path d="M80 35H64V51M444 35H460V51M64 369V385H80M444 385H460V369"/>
+            </g>
+            <g class="vtx-signal-paths" fill="none">
+              <path class="vtx-signal-line vtx-signal-line-a" d="M116 122C165 122 171 150 216 180"/>
+              <path class="vtx-signal-line vtx-signal-line-b" d="M385 107C355 116 347 139 316 177"/>
+              <path class="vtx-signal-line vtx-signal-line-c" d="M355 339C333 307 302 280 285 252"/>
+              <path class="vtx-signal-orbit" d="M136 135A152 152 0 0 1 386 114"/>
+            </g>
+            <g class="vtx-signal-center">
+              <circle cx="268" cy="210" r="59"/>
+              <circle class="vtx-signal-core" cx="268" cy="176" r="3"/>
+              <text class="vtx-signal-center-label" x="268" y="214" text-anchor="middle">Decyzja</text>
+              <text class="vtx-signal-center-caption" x="268" y="234" text-anchor="middle">z uzasadnieniem</text>
+            </g>
+            <g class="vtx-signal-node vtx-signal-node-a">
+              <circle cx="116" cy="122" r="7"/>
+              <text class="vtx-signal-node-label" x="42" y="88">Co wiemy</text>
+              <text class="vtx-signal-node-caption" x="42" y="106">informacje i ich źródła</text>
+            </g>
+            <g class="vtx-signal-node vtx-signal-node-b">
+              <circle cx="385" cy="107" r="7"/>
+              <text class="vtx-signal-node-label" x="306" y="61">Co zakładamy</text>
+              <text class="vtx-signal-node-caption" x="306" y="79">hipotezy i alternatywy</text>
+            </g>
+            <g class="vtx-signal-node vtx-signal-node-c">
+              <circle cx="355" cy="339" r="7"/>
+              <text class="vtx-signal-node-label" x="306" y="375">Co robimy</text>
+              <text class="vtx-signal-node-caption" x="306" y="393">działanie i warunek korekty</text>
+            </g>
+            <g class="vtx-signal-index" aria-hidden="true">
+              <text x="55" y="265">ŚLAD</text>
+              <text x="55" y="281">DECYZJI</text>
+              <path d="M56 297H97"/>
+            </g>
+          </svg>
+          <figcaption>Wynik zachowuje wybrane informacje, uzasadnienie decyzji i późniejszą korektę.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="vtx-section" aria-labelledby="role-title">
-      <div class="vtx-shell">
-        <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Najpierw wybierz widok</p>
-          <h2 id="role-title">Co chcesz zrobić?</h2>
-        </div>
-        <div class="vtx-role-grid">
-          <a class="vtx-role-card" href="uczestnik.html">
-            <span class="vtx-role-number" aria-hidden="true">01</span>
-            <h2>Uczestnik</h2>
-            <p>Rozwiąż scenariusz jak zespół analityczny. Sprawdź informacje, nazwij niepewność, wybierz działanie i zobacz własny tok rozumowania.</p>
-            <span class="vtx-arrow">Wejdź do symulacji →</span>
-          </a>
-          <a class="vtx-role-card" href="prowadzacy.html">
-            <span class="vtx-role-number" aria-hidden="true">02</span>
-            <h2>Prowadzący</h2>
-            <p>Wybierz scenariusz i profil zajęć. Zapisz ustawienia dla kolejnej grupy, a po ćwiczeniu przejrzyj wyniki.</p>
-            <span class="vtx-arrow">Przygotuj zajęcia →</span>
-          </a>
-        </div>
+    <section class="vtx-opening-outcomes" aria-label="Co daje ćwiczenie">
+      <div class="vtx-shell vtx-opening-outcome-grid">
+        <article><h2>Ślad rozumowania</h2><p>Zobaczysz, na czym opierała się decyzja i kiedy zmieniła się ocena sytuacji.</p></article>
+        <article><h2>Nauka na własnych decyzjach</h2><p>Po omówieniu poprawisz rekomendację i zastosujesz metodę w nowym przypadku.</p></article>
+        <article><h2>Materiał do pracy na zajęciach</h2><p>Prowadzący otrzymuje zapis odpowiedzi, kryteria oceny i pytania do omówienia.</p></article>
       </div>
     </section>
 
     <section class="vtx-section" aria-labelledby="engine-title">
       <div class="vtx-shell">
         <div class="vtx-section-head">
-          <p class="vtx-eyebrow">Pięć scenariuszy</p>
-          <h2 id="engine-title">Każdy scenariusz wymaga innego rodzaju analizy</h2>
-          <p>Wspólny rytm pracy, różne problemy: dobór informacji, podział zasobów, sieć zależności, układ aktorów i wybór najważniejszych zagrożeń.</p>
+          <p class="vtx-eyebrow">Jeden scenariusz pokazowy · pięć w rozwoju</p>
+          <h2 id="engine-title">Próg 72H na pokaz. Kolejne tematy w rozwoju.</h2>
+          <p>Na pokaz proponujemy Próg 72H: rozbudowane materiały, opisane działania, końcowe rozstrzygnięcie i informację zwrotną według jawnego klucza. Pozostałe scenariusze można przejrzeć jako wersje robocze.</p>
         </div>
         <div class="vtx-scenario-grid">
+          <article class="vtx-scenario-card vtx-scenario-featured">
+            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Rozbudowany scenariusz pokazowy</span><span class="vtx-tag">Technologia i państwo</span><span class="vtx-tag">72 h</span></div>
+            <h3>Próg 72H</h3>
+            <p class="vtx-muted">System AI przekracza dotychczasowe wyniki testów. Zdecyduj, co ograniczyć, jakie usługi utrzymać i na jakich warunkach dopuścić dalsze działanie.</p>
+            <a class="vtx-button vtx-button-primary" href="uczestnik.html?scenario=prog-72h">Rozpocznij Próg 72H</a>
+          </article>
           <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">Politologia</span><span class="vtx-tag">Stosunki międzynarodowe</span><span class="vtx-tag">24 h + 72 h</span></div>
+            <div class="vtx-tag-row"><span class="vtx-tag">W rozwoju</span><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">Politologia</span><span class="vtx-tag">Stosunki międzynarodowe</span><span class="vtx-tag">24 h + 72 h</span></div>
             <h3>Białystok 24H</h3>
             <p class="vtx-muted">Eksplozja w budynku, kilka możliwych przyczyn, presja informacyjna i decyzje państwa przed wiarygodnym ustaleniem przyczyny.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=bialystok-24h">Rozpocznij ten scenariusz</a>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=bialystok-24h">Zobacz wersję roboczą</a>
           </article>
           <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">12 h + 72 h</span></div>
+            <div class="vtx-tag-row"><span class="vtx-tag">W rozwoju</span><span class="vtx-tag vtx-tag-accent">Bezpieczeństwo</span><span class="vtx-tag">12 h + 72 h</span></div>
             <h3>Czerwony Sygnał 12H</h3>
             <p class="vtx-muted">Silna eksplozja, zgodne sygnały radiacyjne i realna możliwość detonacji jądrowej. Najtrudniejsze decyzje zaczynają się zanim przyczyna zostanie potwierdzona.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=czerwony-sygnal-12h">Rozpocznij ten scenariusz</a>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=czerwony-sygnal-12h">Zobacz wersję roboczą</a>
           </article>
           <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Zarządzanie kryzysowe</span><span class="vtx-tag">48 h</span></div>
+            <div class="vtx-tag-row"><span class="vtx-tag">W rozwoju</span><span class="vtx-tag vtx-tag-accent">Zarządzanie kryzysowe</span><span class="vtx-tag">48 h</span></div>
             <h3>Wielka Woda</h3>
             <p class="vtx-muted">Ograniczone zasoby, zmieniająca się prognoza, infrastruktura krytyczna i fałszywe komunikaty przed kulminacją fali.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=wielka-woda-48h">Rozpocznij ten scenariusz</a>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=wielka-woda-48h">Zobacz wersję roboczą</a>
           </article>
           <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Polityka gospodarcza</span><span class="vtx-tag">96 h</span></div>
+            <div class="vtx-tag-row"><span class="vtx-tag">W rozwoju</span><span class="vtx-tag vtx-tag-accent">Polityka gospodarcza</span><span class="vtx-tag">96 h</span></div>
             <h3>Pęknięcie Bańki</h3>
             <p class="vtx-muted">Korekta wycen sektora centrów danych i infrastruktury obliczeniowej może pozostać problemem rynkowym albo przejść w kryzys płynności i zaufania.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=pekniecie-banki-96h">Rozpocznij ten scenariusz</a>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=pekniecie-banki-96h">Zobacz wersję roboczą</a>
           </article>
           <article class="vtx-scenario-card">
-            <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Politologia</span><span class="vtx-tag">48 h</span></div>
+            <div class="vtx-tag-row"><span class="vtx-tag">W rozwoju</span><span class="vtx-tag vtx-tag-accent">Politologia</span><span class="vtx-tag">48 h</span></div>
             <h3>Kryzys Koalicyjny</h3>
             <p class="vtx-muted">Rząd traci większość, pojawia się sporny przeciek i presja na instytucje. Trzeba oddzielić kryzys polityczny od manipulacji informacyjnej.</p>
-            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=kryzys-koalicyjny-48h">Rozpocznij ten scenariusz</a>
+            <a class="vtx-button vtx-button-secondary" href="uczestnik.html?scenario=kryzys-koalicyjny-48h">Zobacz wersję roboczą</a>
           </article>
         </div>
+        <details class="vtx-details" style="margin-top:24px">
+          <summary>Gdzie jest AI?</summary>
+          <div class="vtx-details-body">
+            <p>Próg 72H dotyczy systemu AI. Sama aplikacja prowadzi obecnie przygotowany scenariusz. Automatyczna informacja zwrotna porównuje wybrane działania z jawnym kluczem: 0-8 punktów za warianty decyzji. Tekst uzasadnień czyta i ocenia prowadzący; model językowy nie analizuje go w tej wersji.</p>
+            <p class="vtx-small vtx-muted">Kolejny etap to propozycje komentarzy od modelu AI, sprawdzane przez prowadzącego, oraz edytor treści. Punkty za wybór wariantów nie są pomiarem kompetencji studenta.</p>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -2278,7 +2736,8 @@ legend {
             <div class="vtx-tag-row"><span class="vtx-tag vtx-tag-accent">Dzisiaj</span></div>
             <h3>Działający demonstrator prowadzony przez wykładowcę</h3>
             <ul>
-              <li>Pięć scenariuszy z różnymi zadaniami analitycznymi.</li>
+              <li>Rozbudowany Próg 72H oraz pięć scenariuszy w rozwoju.</li>
+              <li>W Progu 72H: dostęp do wszystkich materiałów rundy, opisane działania, końcowe rozstrzygnięcie i jawny klucz decyzji.</li>
               <li>Role z własnym mandatem i wymaganym wkładem w decyzję.</li>
               <li>Dodatkowe narzędzie wybranego profilu w rundzie 3: mapa aktorów, bilans zasobów albo karta negocjacji.</li>
               <li>Ustawienia zajęć do ponownego użycia i przekazania, bez odpowiedzi studentów.</li>
@@ -2291,6 +2750,7 @@ legend {
             <h3>Sprawny warsztat i wybrany przypadek użycia</h3>
             <ul>
               <li>Wspólnie wybieramy scenariusz, format zajęć i kryteria powodzenia.</li>
+              <li>Przygotowujemy krótszy wariant warsztatowy i sprawdzamy czas pracy z grupą.</li>
               <li>Sprawdzamy użyteczność, obciążenie uczestników i jakość materiału do omówienia.</li>
               <li>Mierzymy, czy gotowy przebieg, materiały i raport ograniczają czas przygotowania oraz ręcznego odtwarzania pracy przez prowadzącego.</li>
             </ul>
@@ -2303,6 +2763,7 @@ legend {
               <li>Sesje, w których zespoły reprezentują instytucje z odmiennymi mandatami i informacjami.</li>
               <li>Sprawdzone zestawy danych historycznych z opisem źródła, czasu i ograniczeń.</li>
               <li>Informacja zwrotna wspomagana przez AI, po sprawdzeniu jej jakości i z zatwierdzeniem prowadzącego.</li>
+              <li>Edytor materiałów i zadań do przygotowania własnego scenariusza.</li>
               <li>Panel grupy, kolejne edycje przedmiotu i połączenie z uczelnianą platformą zajęć.</li>
             </ul>
           </article>
